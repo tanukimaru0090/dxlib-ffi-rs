@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 extern crate c_encode;
-pub use self::c_encode::{ToEncode};
+pub use self::c_encode::ToEncode;
 pub use crate::dxlib_common::*;
 use std::ffi::CStr;
 use std::ffi::CString;
@@ -23,13 +23,13 @@ extern "stdcall" {
     pub fn dx_ProcessMessage() -> CInt;
 
     // Live2D 関係関数
-    pub fn dx_Live2D_SetCubism4CoreDLLPath(CoreDLLFilePath: *const CChar)->CInt;
-    pub fn dx_Live2D_RenderBegin()->CInt;
-    pub fn dx_Live2D_RenderEnd()->CInt;
-    pub fn dx_Live2D_LoadModel(FilePath: *const CChar)->CInt;
-    pub fn dx_Live2D_DeleteModel(Live2DModelHandle: CInt)->CInt;
-    pub fn dx_Live2D_Model_Update(Live2DModelHandle: CInt, DeltaTimeSeconds: CFloat)->CInt;
-    pub fn dx_Live2D_Model_Draw(Live2DModelHandle: CInt)->CInt;
+    pub fn dx_Live2D_SetCubism4CoreDLLPath(CoreDLLFilePath: *const CChar) -> CInt;
+    pub fn dx_Live2D_RenderBegin() -> CInt;
+    pub fn dx_Live2D_RenderEnd() -> CInt;
+    pub fn dx_Live2D_LoadModel(FilePath: *const CChar) -> CInt;
+    pub fn dx_Live2D_DeleteModel(Live2DModelHandle: CInt) -> CInt;
+    pub fn dx_Live2D_Model_Update(Live2DModelHandle: CInt, DeltaTimeSeconds: CFloat) -> CInt;
+    pub fn dx_Live2D_Model_Draw(Live2DModelHandle: CInt) -> CInt;
     pub fn dx_Live2D_Model_SetTranslate(Live2DModelHandle: CInt, x: CFloat, y: CFloat) -> CInt;
     pub fn dx_Live2D_Model_SetExtendRate(
         Live2DModelHandle: CInt,
@@ -990,8 +990,8 @@ extern "stdcall" {
 
     // 音楽再生関数
     //pub fn dx_LoadMusicMem(FileName: *const CChar)->CInt;
-    pub fn dx_PlayMusicMem(MusicHandle:CInt,PlayType: CInt,TopPositionFlag: CInt)->CInt;
-    pub fn dx_DeleteMusicMem(MusicHandle:CInt)->i32;
+    pub fn dx_PlayMusicMem(MusicHandle: CInt, PlayType: CInt, TopPositionFlag: CInt) -> CInt;
+    pub fn dx_DeleteMusicMem(MusicHandle: CInt) -> i32;
     /// ＭＩＤＩ又はＭＰ３ファイルを演奏(再生)する
     //pub fn dx_PlayMusic(FileName:*const CChar ,PlayType:CInt) -> CInt;
     /// ＭＩＤＩ又はＭＰ３ファイルが演奏(再生)中かの情報を取得する
@@ -1166,7 +1166,7 @@ extern "stdcall" {
     /// 文字列の先頭の文字のバイト数を取得する
     //pub fn dx_GetCharBytes() -> CInt;
 
-    // ツールバー    
+    // ツールバー
     pub fn dx_SetDisplayMenuFlag(Flag: CInt) -> CInt; // メニューを表示するかどうかをセットする
 
     pub fn dx_GetDisplayMenuFlag() -> CInt; // メニューを表示しているかどうかを取得する
@@ -1216,7 +1216,11 @@ extern "stdcall" {
 
     pub fn dx_SetMenuItemMark_Name(ItemName: *const CChar, Mark: CInt) -> CInt; // メニューの項目にチェックマークやラジオボタンを表示するかどうかを設定する
 
-    pub fn dx_AddMenuItem_ID(ParentItemID: CInt, NewItemName: *const CChar, NewItemID: CInt) -> CInt; // メニューに選択項目を追加する
+    pub fn dx_AddMenuItem_ID(
+        ParentItemID: CInt,
+        NewItemName: *const CChar,
+        NewItemID: CInt,
+    ) -> CInt; // メニューに選択項目を追加する
 
     pub fn dx_AddMenuLine_ID(ParentItemID: CInt) -> CInt; // メニューのリストに区切り線を追加する
 
@@ -1252,9 +1256,9 @@ extern "stdcall" {
     pub fn dx_ErrorLogAdd(ErrorStr: *const CChar) -> CInt; // ログファイル( Log.txt ) に文字列を出力する
 
     // マイナー関数
-    pub fn dx_SetWindowUserCloseEnableFlag(Flag:CInt)->CInt;
+    pub fn dx_SetWindowUserCloseEnableFlag(Flag: CInt) -> CInt;
 
-    pub fn dx_GetWindowUserCloseFlag(StateResetFlag:CInt)->CInt;
+    pub fn dx_GetWindowUserCloseFlag(StateResetFlag: CInt) -> CInt;
     pub fn dx_SetUseBackBufferTransColorFlag(Flag: CInt) -> CInt;
     /// ウインドウがアクティブではない状態でも処理を続行するか、フラグをセットする
     pub fn dx_SetAlwaysRunFlag(Flag: CInt) -> CInt;
@@ -1323,11 +1327,14 @@ extern "stdcall" {
     pub fn dx_GetDragFileNum() -> CInt;
     // ウィンドウの見た目を変える
     pub fn dx_SetWindowStyleMode(Mode: CInt) -> CInt;
+    // クリップボードの文字列を取得する
+    pub fn dx_GetClipboardText(DestBuffer:*mut  u16)->CInt;
 }
 
-extern "cdecl" {
-    // pub unsafe fn  dx_printfDx(fotmat:*const CChar, args: ...) -> CInt;
-}
+#[link(name = "DxLib_x64")]
+#[no_mangle]
+extern "cdecl" {}
+
 /*wrapped function*/
 mod hidden {
     use crate::dxlib_common::*;
@@ -1343,7 +1350,7 @@ mod hidden {
         pub fn dx_PlaySoundFile(FileName: *const CChar, PlayType: CInt) -> CInt;
         pub fn dx_LoadSoundMem(FileName: *const CChar) -> CInt;
         pub fn dx_DrawString(x: CInt, y: CInt, String: *const CChar, Color: Color) -> CInt;
-        pub fn dx_LoadMusicMem(FileName: *const CChar)->CInt;
+        pub fn dx_LoadMusicMem(FileName: *const CChar) -> CInt;
         pub fn dx_MV1LoadModel(FileName: *const CChar) -> CInt;
         pub fn dx_ChangeFont(FileName: *const CChar) -> CInt;
         pub fn dx_CreateFontToHandle(
@@ -1431,12 +1438,6 @@ mod hidden {
         pub fn dx_LoadARGB8ColorSoftImage(FileName: *const CChar) -> CInt;
         pub fn dx_LoadXRGB8ColorSoftImage(FileName: *const CChar) -> CInt;
 
-    }
-
-    #[link(name = "DxLib_x64")]
-    #[no_mangle]
-    extern "cdecl" {
-        //pub fn dx_DrawFormatString(x:CInt,y:CInt,ck\olor:\\\);
     }
 }
 
@@ -1697,8 +1698,8 @@ pub fn dx_FileRead_open(FilePath: &str, ASync: CInt) -> CInt {
         return hidden::dx_FileRead_open(FilePath.to_cstring().as_ptr(), ASync);
     }
 }
-pub fn dx_LoadMusicMem(FileName: &str)->CInt{
-    unsafe{
+pub fn dx_LoadMusicMem(FileName: &str) -> CInt {
+    unsafe {
         return hidden::dx_LoadMusicMem(FileName.to_cstring().as_ptr());
     }
 }

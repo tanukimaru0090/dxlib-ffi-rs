@@ -1,8 +1,6 @@
 /*dxlib const variables*/
 
-
-
-pub const NULL:i32 = 0;
+pub const NULL: i32 = 0;
 pub const TRUE: i32 = 1;
 pub const FALSE: i32 = 0;
 pub const MAX_IMAGE_NUM: i32 = 32768;
