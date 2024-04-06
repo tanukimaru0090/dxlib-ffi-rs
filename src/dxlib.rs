@@ -1,6 +1,6 @@
 #![allow(non_snake_case)]
 extern crate c_encode;
-pub use self::c_encode::{AsEncode,ToEncode};
+pub use self::c_encode::{ToEncode};
 pub use crate::dxlib_common::*;
 use std::ffi::CStr;
 use std::ffi::CString;
