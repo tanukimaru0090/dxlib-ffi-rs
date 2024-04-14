@@ -22,6 +22,9 @@ extern "stdcall" {
     /// ウインドウズのメッセージを処理する
     pub fn dx_ProcessMessage() -> CInt;
 
+    // ウインドウサイズ(クライアント領域)を設定する
+    pub fn dx_SetWindowSize(width:CInt,height:CInt)->CInt;
+    
     // Live2D 関係関数
     pub fn dx_Live2D_SetCubism4CoreDLLPath(CoreDLLFilePath: *const CChar) -> CInt;
     pub fn dx_Live2D_RenderBegin() -> CInt;
