@@ -1250,7 +1250,6 @@ extern "stdcall" {
 
     // クリップボードに格納されているテキストデータを読み出す
     pub fn dx_GetClipboardText(DestBuffer: *mut CChar) -> CInt;
-    pub fn dx_SetClipboardText(Text: *const CChar) -> CInt; // クリップボードにテキストデータを格納する
 
     // ログ関係
     pub fn dx_ErrorLogAdd(ErrorStr: *const CChar) -> CInt; // ログファイル( Log.txt ) に文字列を出力する
@@ -1327,8 +1326,6 @@ extern "stdcall" {
     pub fn dx_GetDragFileNum() -> CInt;
     // ウィンドウの見た目を変える
     pub fn dx_SetWindowStyleMode(Mode: CInt) -> CInt;
-    // クリップボードの文字列を取得する
-    pub fn dx_GetClipboardText(DestBuffer:*mut  u16)->CInt;
 }
 
 #[link(name = "DxLib_x64")]
