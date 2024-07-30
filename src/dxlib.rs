@@ -517,10 +517,8 @@ extern "stdcall" {
     pub fn dx_DrawGraphF(x: CFloat, y: CFloat, GrHandle: CInt, TransFlag: CInt) -> CInt;
     /// メモリに読みこんだグラフィックのＬＲ反転描画
     pub fn dx_DrawTurnGraph(
-        x1: CInt,
-        y1: CInt,
-        x2: CInt,
-        y2: CInt,
+        x: CInt,
+        y: CInt,
         GrHandle: CInt,
         TransFlag: CInt,
     ) -> CInt;
