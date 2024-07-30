@@ -968,6 +968,14 @@ extern "stdcall" {
         SOUND3D_REVERB_PARAM: *const XAUDIO2FX_REVERB_PARAMETERS,
         SoundHandle: CInt,
     ) -> CInt;
+    /// サウンドハンドルの再生位置をバイト単位で取得する
+    pub fn dx_GetSoundCurrentPosition(SoundHandle:CInt)->CInt;
+
+    /// サウンドハンドルの再生位置をミリ秒単位で取得する
+    /// (無圧縮wav,Ogg以外の形式の場合は正しい値が返ってこない場合があります)
+    pub fn dx_GetSoundCurrentTime(SoundHandle:CInt)->CInt;
+
+
     /// メモリに読み込んだ音データの３Ｄサウンド用のリバーブエフェクトパラメータをプリセットを使用して設定する
     //pub fn dx_Set3DPresetReverbParamSoundMem() -> CInt;
     /// ３Ｄサウンド用のプリセットのリバーブエフェクトパラメータを取得する
