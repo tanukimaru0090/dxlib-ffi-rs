@@ -650,6 +650,12 @@ extern "stdcall" {
     //pub fn dx_GetDrawStringWidth() -> CInt;
     /// DrawFormatString 関数書式付き文字列の描画幅(ドット単位)を得る
     //pub fn dx_GetDrawFormatStringWidth() -> CInt;
+    
+    /// フォントハンドルのサイズを取得する
+    pub fn dx_GetFontSizeToHandle(FontHandle:CInt)->CInt;
+    /// デフォルトフォントハンドルのサイズを取得する
+    pub fn dx_GetFontSize()->CInt;
+
     /// 描画する文字列のサイズをセットする
     pub fn dx_SetFontSize(size: CInt) -> CInt;
     /// 描画する文字列の文字の太さをセットする
