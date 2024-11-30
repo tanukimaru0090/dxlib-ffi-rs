@@ -1,8 +1,5 @@
 # dxlib-ffi-rs
 ・DxLibをRust用に呼び出せるようにしたもの
-・さらにラップされたものを使いたい場合、このライブラリと一緒に "tanukimaru0090/dxlib-rs"を使ってください。
- また、"tanukimaru0090/dxlib-rs"についてはそのリポジトリ内の "README.md" を参照してください。
-
 #使い方
 
 myproject/Cargo.toml
@@ -33,6 +30,7 @@ fn main(){
 
 最後に、 "cargo build --release" などでビルドをして、実行ファイルと同じディレクトリに "DxLib_x64.dll" を置くことで実行することができます。
 DxLib_x64.dllはDXライブラリの公式サイトのC#版DXライブラリをダウンロードすることで使うことができます。
+
 
 ## フォークさせてもらった、ライブラリ
 elipmoc/rust_dxlib
